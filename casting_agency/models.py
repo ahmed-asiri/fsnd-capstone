@@ -1,7 +1,7 @@
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
+from datetime import datetime
 
 try:
     database_path = os.environ['DATABASE_URL']
@@ -65,7 +65,7 @@ class Movie(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
-    release_date = db.Column(db.String)
+    release = db.Column(db.DateTime)
 
     def __repr__(self):
         return f"<Movie id='{self.id}' title='{self.title}'>"
@@ -89,6 +89,6 @@ class Movie(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'release': self.release,
+            'release_date': self.release,
         }
 
