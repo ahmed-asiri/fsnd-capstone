@@ -19,6 +19,10 @@ def setup_db(app, database_path=database_path):
     db.init_app(app)
 
 
+movie_actors = db.Table('movie_actors',
+    db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'), primary_key=True),
+    db.Column('actor_id', db.Integer, db.ForeignKey('actor.id'), primary_key=True)
+)
 
 class Actor(db.Model):
     __tablename__ = 'actor'
@@ -61,6 +65,7 @@ class Movie(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
+    release_date = db.Column(db.String)
 
     def __repr__(self):
         return f"<Movie id='{self.id}' title='{self.title}'>"
