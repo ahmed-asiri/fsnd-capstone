@@ -2,12 +2,18 @@ import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from datetime import datetime
+from dotenv import load_dotenv
 
-try:
-    database_path = os.environ['DATABASE_URL']
-except:
+
+load_dotenv()
+
+database_path = os.getenv('DATABASE_URL')
+if not database_path:
     database_name = "capstone"
-    database_path = "postgresql://{}:{}@{}/{}".format('postgres', 'admin', 'localhost:5432', database_name)
+    database_path = "postgresql://{}:{}@{}/{}".format('postgres',
+                                                      'admin',
+                                                      'localhost:5432',
+                                                      database_name)
 
 db = SQLAlchemy()
 
@@ -20,9 +26,14 @@ def setup_db(app, database_path=database_path):
     db.create_all()
 
 movie_actors = db.Table('movie_actors',
-    db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'), primary_key=True),
-    db.Column('actor_id', db.Integer, db.ForeignKey('actor.id'), primary_key=True)
-)
+                        db.Column('movie_id',
+                                  db.Integer,
+                                  db.ForeignKey('movie.id'),
+                                  primary_key=True),
+                        db.Column('actor_id', db.Integer,
+                                  db.ForeignKey('actor.id'),
+                                  primary_key=True))
+
 
 class Actor(db.Model):
     __tablename__ = 'actor'
@@ -91,4 +102,3 @@ class Movie(db.Model):
             'title': self.title,
             'release_date': self.release,
         }
-
