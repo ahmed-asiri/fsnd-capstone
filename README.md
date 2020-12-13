@@ -311,6 +311,30 @@ This section will contain all the endpoints with their response examples to make
     }
     ```
 
+## Authentication and Permissions
+
+Authentication is handled via [Auth0](https://auth0.com).
+
+All except two endpoints require authentication, and proper permission. The GET/actors and GET/movies are the public endpoints. So, anyone can access.
+
+For testing, you can use the Tokens that available in the .env file.
+
+API endpoints use these roles and permissions:
+
+- Casting Director:
+    * 'delete:actor' (remove actor from the casting agency database).
+    * 'patch:actor' (edit or modify actor data that exist in the casting agency database).
+    * 'patch:movie' (edit or modify actor data that exist in the casting agency database).
+    * 'post:actors' (create new actors in the casting agency database).
+
+- Executive Director:
+    * Same as the Casting Director permissions, plus
+    * 'delete:movie' (remove movie from the casting agency database).
+    * 'post:movies' (create new movies in the casting agency database).
+
+
+For reference, see the Test tab of your Auth0 API.
+
 ## Authors
 
 Ahmed Asiri authored the API endpoints at the (app.py) file, the unittest at the (test_app.py), the database models at (models.py), auth check at (auth.py) and the README.md file.
