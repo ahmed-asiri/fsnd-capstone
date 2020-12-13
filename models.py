@@ -20,7 +20,7 @@ db = SQLAlchemy()
 
 def setup_db(app, database_path=database_path):
     app.config.from_object('config')
-    app.config["SQLALCHEMY_DATABASE_URI"] = database_path
+    #app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     db.app = app
     db.init_app(app)
     migrate = Migrate(app, db)
