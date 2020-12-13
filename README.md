@@ -37,15 +37,19 @@ This will install all of the required packages we selected within the `requireme
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
 
 
-## Running the server
+## Running the server locally in development environment
 
 From within the `root` directory first ensure you are working using your created virtual environment.
 
 To run the server, execute:
 
 ```bash
+pip install -r requirements.txt
+source setup.sh
 python app.py
 ```
+
+the `source setup.sh` will prepare all the needed environment variables to run the server.
 
 #### Testing
 
@@ -53,8 +57,11 @@ To run the tests, run
 ```
 dropdb capstone_test
 createdb capstone_test
+source setup.sh
 python test_app.py
 ```
+
+NOTE: the test may take time to execute, becasue it will initialize the test database with records to complete the test.
 
 ## API Reference
 

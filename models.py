@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-database_path = os.getenv('DATABASE_URL')
+database_path = os.environ['DATABASE_URL']
 if not database_path:
     database_name = "capstone"
     database_path = "postgresql://{}:{}@{}/{}".format('postgres',

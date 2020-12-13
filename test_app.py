@@ -57,8 +57,8 @@ class AgencyTestCase(unittest.TestCase):
                           release=self.new_movie['release'])
             movie.insert()
 
-        self.director_token = os.getenv('CASTING_DIRECTOR_TOKEN')
-        self.producer_token = os.getenv('EXECUTIVE_PRODUCER_TOKEN')
+        self.director_token = os.environ['CASTING_DIRECTOR_TOKEN']
+        self.producer_token = os.environ['EXECUTIVE_PRODUCER_TOKEN']
 
     def producer_header(self):
         return {'Authorization': 'Bearer {}'.format(self.producer_token)}
